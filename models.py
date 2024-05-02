@@ -6,7 +6,7 @@ db = SQLAlchemy(app)
 
 
 class file_results(db.Model):
-    time = db.Column( db.Integer, primary_key = True)
+    time = db.Column(db.Integer, primary_key=True)
     ip = db.Column(db.String(16), primary_key=True)
     filename = db.Column(db.String(100))
     Aresult = db.Column(db.Integer)
@@ -22,3 +22,6 @@ class file_results(db.Model):
         self.Dresult = file_result[2]
 
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
